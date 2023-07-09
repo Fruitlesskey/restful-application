@@ -2,6 +2,7 @@ package com.example.restfulapplication.controller;
 
 import com.example.restfulapplication.entity.Employee;
 import com.example.restfulapplication.entity.EmployeeRequest;
+import com.example.restfulapplication.exception.EmployeeException;
 import com.example.restfulapplication.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -34,6 +35,11 @@ public class EmployeeController {
     @DeleteMapping("/employees/{id}")
     public void deleteEmployee(@PathVariable("id") Long id) {
         employeeService.deleteEmployee();
+    }
+
+    @GetMapping("/employees/{id}")
+    public Employee getById(@PathVariable("id") Long id) throws EmployeeException {
+        return employeeService.getEmployeeById(id);
     }
 
 }

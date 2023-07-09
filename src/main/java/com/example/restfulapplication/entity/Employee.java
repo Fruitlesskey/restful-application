@@ -12,6 +12,7 @@ import java.io.Serializable;
 @Setter
 @Builder
 public class Employee implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
