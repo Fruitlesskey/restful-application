@@ -21,11 +21,7 @@ public class EmployeeService {
     }
 
     public Employee createEmployee(EmployeeRequest request) {
-        Employee employee = Employee.builder()
-                .firstName(request.getFirstName())
-                .lastName(request.getLastName())
-                .email(request.getEmail())
-                .build();
+        Employee employee = Employee.builder().firstName(request.getFirstName()).lastName(request.getLastName()).email(request.getEmail()).build();
 
         return repository.save(employee);
     }

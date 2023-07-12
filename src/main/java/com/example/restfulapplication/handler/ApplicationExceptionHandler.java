@@ -17,10 +17,12 @@ public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler 
     private ResponseEntity<Object> buildResponse(ApiError apiError) {
         return new ResponseEntity<>(apiError, apiError.getStatus());
     }
+
     @ExceptionHandler(EmployeeException.class)
     public ResponseEntity<Object> handleEmployeeException(EmployeeException exception) {
         ApiError apiError = new ApiError(HttpStatus.NOT_FOUND, exception.getMessage());
         apiError.setMessage(exception.getMessage());
         return buildResponse(apiError);
+        
     }
 }
