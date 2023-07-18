@@ -5,6 +5,7 @@ import com.example.restfulapplication.entity.EmployeeRequest;
 import com.example.restfulapplication.exception.EmployeeException;
 import com.example.restfulapplication.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,6 +24,7 @@ public class EmployeeController {
     }
 
     @PostMapping("/employees")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public Employee createEmployee(@RequestBody EmployeeRequest request) {
         return employeeService.createEmployee(request);
     }
@@ -38,6 +40,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/employees/{id}")
+    @PreAuthorize("hasAuthority('USER_READ')")
     public Employee getById(@PathVariable("id") Long id) throws EmployeeException {
         return employeeService.getEmployeeById(id);
     }
